@@ -46,22 +46,19 @@ export default class PaymentsList extends PureComponent {
 
   handleSwiping = (e, deltaX, deltaY) => this.setState({ x: deltaX, y: deltaY })
 
-  handleSwipe = (e, absx) =>
-    this.setState(state => {
-      if (absx > 0)
-        return {
-          ...state,
-          selectedMonth: state.selectedMonth + 1,
-          x: 0,
-          y: 0
-        }
-      else
-        return {
-          ...state,
-          selectedMonth: state.selectedMonth - 1,
-          x: 0,
-          y: 0
-        }
+  handleSwipe = (e, absX) =>
+    this.setState(({ selectedMonth, ...state }) => {
+      const monthChange =
+        selectedMonth < 11 && absX > 0
+          ? selectedMonth + 1
+          : selectedMonth > 0 && absX < 0 ? selectedMonth - 1 : selectedMonth
+
+      return {
+        ...state,
+        selectedMonth: monthChange,
+        x: 0,
+        y: 0
+      }
     })
 
   handleChange = key => {
@@ -78,9 +75,10 @@ export default class PaymentsList extends PureComponent {
           <option value="2019">2019</option>
         </select>
         <Swipeable
-          onSwipedRight={this.handleSwipe}
           onSwipedLeft={this.handleSwipe}
+          onSwipedRight={this.handleSwipe}
           onSwiping={this.handleSwiping}
+          delta={100}
         >
           <MonthList
             months={state.months}
