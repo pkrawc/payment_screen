@@ -8,7 +8,7 @@ const Wrapper = styled.section`
   align-items: center;
   margin: 1em;
   border-radius: 12px;
-  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.24);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.24);
   background-color: #4c73fd;
   background-image: linear-gradient(90deg, #4c73fd 0%, #3f51b5 100%);
   color: ${colors.light};

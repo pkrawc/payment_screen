@@ -78,7 +78,7 @@ export default class PaymentsList extends PureComponent {
           onSwipedLeft={this.handleSwipe}
           onSwipedRight={this.handleSwipe}
           onSwiping={this.handleSwiping}
-          delta={100}
+          delta={25}
         >
           <MonthList
             months={state.months}
